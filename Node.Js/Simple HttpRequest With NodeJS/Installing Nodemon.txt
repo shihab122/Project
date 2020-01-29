@@ -1,0 +1,4 @@
+npm init
+npm install --save-dev nodemon
+rename node to nodemon in package.json
+npm start

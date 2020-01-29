@@ -1,0 +1,4 @@
+1. npm init(set the entry point as server.js)
+2. npm i express i dotenv
+3. npm i -D nodemon (installing dev dependency)
+4. npm install -g win-node-env(For Windows)
