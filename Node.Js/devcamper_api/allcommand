@@ -2,3 +2,4 @@
 2. npm i express i dotenv
 3. npm i -D nodemon (installing dev dependency)
 4. npm install -g win-node-env(For Windows)
+5. npm install morgan(For middleware)
