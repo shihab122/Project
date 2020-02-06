@@ -1,5 +1,7 @@
 1. npm init(set the entry point as server.js)
 2. npm i express i dotenv
 3. npm i -D nodemon (installing dev dependency)
-4. npm install -g win-node-env(For Windows)
-5. npm install morgan(For middleware)
+4. npm i -g win-node-env(For Windows)
+5. npm i morgan(For middleware)
+6. npm i mongoose(For MongoDB Setup)
+7. npm i colors(For terminal text color)

@@ -10,9 +10,12 @@
   "author": "Shihab Hossain",
   "license": "ISC",
   "dependencies": {
+    "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "i": "^0.3.6"
+    "i": "^0.3.6",
+    "mongoose": "^5.8.11",
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"
