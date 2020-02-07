@@ -15,6 +15,10 @@ connectDB();
 const bootcamps = require('./routes/bootcamps');
 
 const app = express();
+
+// Body parser
+app.use(express.json());
+
 const PORT = process.env.PORT || 5000;
 
 // Middleware
