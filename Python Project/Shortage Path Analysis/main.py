@@ -3,6 +3,9 @@ from algorithms.bellmanford import BellmanFord
 from algorithms.floyadwarshall import FloydWarshall
 from algorithms.edge import Edge
 import time
+import numpy as np
+
+import matplotlib.pyplot as plt
 
 INF = 999999999999999
 ''' time in microsecond'''
@@ -16,6 +19,7 @@ def main():
         graph = []
         edges = []
         nodes = set()
+        y_units = [0.0, 0.0, 0.0]
         for i, data in enumerate(read_data):
             temp = []
             for j, d in enumerate(data.replace(str('\n'), str('')).replace(' ', '').split(',')):
@@ -41,6 +45,7 @@ def main():
                     file.writelines('Source => ' + str(index) + ' all destination node analysis\n')
                     dijkstra_end_time = current_milli_time()
                     total_time_for_dijkstra += dijkstra_end_time - dijkstra_start_time
+                    y_units[0] = total_time_for_dijkstra
                     file.writelines('Dijkstra took total time => ' + str(dijkstra_end_time - dijkstra_start_time)
                                     + ' microsecond\n')
                     dijkstra.printSolution(dist, parent, file, str(index))
@@ -62,6 +67,7 @@ def main():
                 file.writelines('Source => ' + str(index) + ' all destination node analysis\n')
                 bellmanFord_end_time = current_milli_time()
                 total_time_for_bellmanFord += bellmanFord_end_time - bellmanFord_start_time
+                y_units[1] = total_time_for_bellmanFord
                 file.writelines(
                     'BellmanFord took total time => ' + str(total_time_for_bellmanFord) + ' microsecond\n')
                 bellmanFord.printBellmanFord(dis, v, file, index, predecessor)
@@ -76,6 +82,7 @@ def main():
             dis, predecessor = floydWarshall.floydWarshall(graph, len(nodes))
             file.writelines('all source  to all destination node analysis\n')
             floydWarshall_end_time = current_milli_time()
+            y_units[2] = floydWarshall_end_time - floydWarshall_start_time
             file.writelines(
                 'Floyd Warshall took total time => ' + str(
                     floydWarshall_end_time - floydWarshall_start_time) + ' microsecond\n')
@@ -84,6 +91,19 @@ def main():
             '''End FloydWarshall analysis'''
 
             file.close()
+
+            x_units = [1, 2, 3]
+
+            tick_label = ['Dijkstra', 'BellmanFord', 'Floyd Warshall']
+            fig = plt.figure(figsize=(10, 10))
+            plt.yticks(np.arange(0, 40, 1))
+            plt.ylim([0, 40])
+            plt.bar(x_units, y_units, tick_label=tick_label,width=0.8, color=['red', 'green', 'blue']),
+            plt.xlabel('x - axis')
+            plt.ylabel('y - axis')
+            plt.title('Time analysis chart!')
+
+            plt.show()
 
 if __name__ == "__main__":
     main()
