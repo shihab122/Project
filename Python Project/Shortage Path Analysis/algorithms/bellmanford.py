@@ -51,3 +51,20 @@ class BellmanFord:
                 current = predecessor[current]
             file.writelines(path + '\n')
 
+    def printBellmanFordForSingleSourceAndDestination(self, dis, V, file, src, predecessor, dest):
+        file.writelines("Vertex \t\tDistance from Source\t\tPath From Source\n")
+        for i in range(V):
+            if i == dest:
+                file.writelines("%d --> %d\t\t\t\t%d\t\t\t\t\t" % (src, i, dis[i]))
+                path = str(i)
+                current = predecessor[i]
+                while current < V and current is not None:
+                    path += ' ' + str(current)
+                    if current >= V or predecessor[current] is None:
+                        break
+                    if current == i:
+                        break
+                    current = predecessor[current]
+                file.writelines(path + '\n')
+                break
+

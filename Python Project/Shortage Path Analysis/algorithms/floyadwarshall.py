@@ -51,16 +51,31 @@ class FloydWarshall:
                 # Print Path
                 file.writelines("\t\t\t\t\t")
                 ConstructPath(predecessor, i, j, '', file)
-                # current = predecessor[i][j]
-                # path = str(i)
-                # while current < V and current != i:
-                #     path += ' ' + str(current)
-                #     current = predecessor[i][current]
-                #     if current == i:
-                #         break
-                # path += ' ' + str(j)
                 file.writelines('\n')
             file.writelines('----------------------------------------------------------------------------------\n')
+
+    def printSolutionForGivenSourceAndDestination(self, dist, V, file, predecessor, src, dest):
+        file.writelines('----------------------------------------------------------------------------------\n')
+        for i in range(V):
+            if i == src:
+                file.writelines('----------------------------------------------------------------------------------\n')
+                file.writelines('Source ' + str(i) + ' to Destination ' + str(dest) + ' analysis\n')
+                file.writelines("Vertex \t\tDistance from Source\t\tPath from Source\n")
+                for j in range(V):
+                    if j == dest:
+                        file.writelines("%d --> %d \t\t\t" % (i, j))
+                        if dist[i][j] == INF:
+                            file.writelines("INF"),
+                        else:
+                            file.writelines(str((dist[i][j]))),
+
+                        # Print Path
+                        file.writelines("\t\t\t\t\t")
+                        ConstructPath(predecessor, i, j, '', file)
+                        file.writelines('\n')
+                        break
+                file.writelines('----------------------------------------------------------------------------------\n')
+                break
 
 
 def ConstructPath(predecessor, i, j, path, file):

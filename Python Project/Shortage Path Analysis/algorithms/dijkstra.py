@@ -39,6 +39,15 @@ class Dijkstra:
             self.printPath(parent, i, file)
         file.writelines('\n\n')
 
+    def printSolutionForSingleSourceAndDestination(self, dist, parent, file, src, dest):
+        file.writelines("Vertex \t\tDistance from Source\tPath")
+        for i in range(1, len(dist)):
+            if i == dest:
+                file.writelines("\n%s --> %d \t\t%d \t\t\t\t\t" % (src, i, dist[i])),
+                self.printPath(parent, i, file)
+                break
+        file.writelines('\n\n')
+
     def dijkstra(self, graph, src):
 
         row = len(graph)
